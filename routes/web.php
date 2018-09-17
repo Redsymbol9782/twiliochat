@@ -7,7 +7,7 @@ Route::post('/sms', 'SmsController@sendSms');
 Route::get('/voice', 'VoiceController@voice');
 Route::post('/voice/call', function(){
     // Get form input
-    echo $userPhone = Input::get('userPhone');exit;
+    $userPhone = Input::get('userPhone');
     $encodedSalesPhone = urlencode(str_replace(' ','',Input::get('salesPhone')));
     // Set URL for outbound call - this should be your public server URL
     $host = parse_url(Request::url(), PHP_URL_HOST);
