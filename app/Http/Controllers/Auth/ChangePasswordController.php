@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Hash;
 use Validator;
+use DB;
 
 class ChangePasswordController extends Controller
 {
@@ -34,8 +35,9 @@ class ChangePasswordController extends Controller
     public function showChangePasswordForm()
     {
         $user = Auth::getUser();
-
-        return view('auth.change_password', compact('user'));
+		$role = DB::table('roles')->where('id',$user['role_id'])->first();
+		$role_title = $role->title;
+        return view('auth.change_password', compact('user','role_title'));
     }
 
     /**

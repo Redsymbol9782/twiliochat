@@ -137,7 +137,7 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 	
-	
+
 	'twilio' => [
 		'TWILIO_ACCOUNT_SID' => env('TWILIO_ACCOUNT_SID'),
 		'TWILIO_AUTH_TOKEN' => env('TWILIO_AUTH_TOKEN'),

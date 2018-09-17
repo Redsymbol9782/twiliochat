@@ -25,6 +25,8 @@
                         <th>@lang('quickadmin.users.fields.name')</th>
                         <th>@lang('quickadmin.users.fields.email')</th>
                         <th>@lang('quickadmin.users.fields.role')</th>
+                        <th>@lang('quickadmin.users.fields.agent_type')</th>
+                        <th>@lang('quickadmin.users.fields.support')</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -39,7 +41,9 @@
 
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->role->title or '' }}</td>
+                                <td>{{ $user->role->title or 'N/A' }}</td>
+                                <td>{{ $user->agentType->title or 'N/A' }}</td>
+                                <td>{{ $user->support->title or 'N/A' }}</td>
                                 <td>
                                     @can('user_view')
                                     <a href="{{ route('admin.users.show',[$user->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>

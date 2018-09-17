@@ -1,0 +1,31 @@
+project detail :  am working with Twilio to do Programmable Voice, SMS, Chat, Texting, Contact Center create communication channels and develop workflows and call functionality that you would normally do in a PBX.
+
+customer will login from front-end and employee will be from back-end
+There will be concept of SUPER ADMIN
+
+admin will make employee and customer
+
+so customer will login from front-end
+super admin from back-end
+customer can login and can see some public pages
+employee and admin login from back-end
+
+Look at https://www.solgari.com for video
+for video calling
+just for study
+BITRIX24.NET credentials :
+rachana.saraswat11@gmail.com
+option@#123
+
+Create ADMIN as super
+ADMIN can create employee and customer
+so 3 types of users would be there.
+
+For CUstomer registration : 
+location, first name, last name, number, email and password, area code , type of agent (sale or agent), It support (network support, application support, voice services Support) ,
+those fields must be there.
+
+Same as emplyee
+customer will login from frontend and employee will be from backend
+for call twilio
+for chat: rocket.chat

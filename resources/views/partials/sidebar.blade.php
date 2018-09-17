@@ -31,14 +31,14 @@
             </li>
             @endcan
             
-            @can('payment_access')
+            <?php /* @can('payment_access')
             <li class="{{ $request->segment(2) == 'payments' ? 'active' : '' }}">
                 <a href="{{ route('admin.payments.index') }}">
                     <i class="fa fa-gears"></i>
                     <span class="title">@lang('quickadmin.payments.title')</span>
                 </a>
             </li>
-            @endcan
+            @endcan */?>
             
             @can('user_management_access')
             <li class="treeview">
