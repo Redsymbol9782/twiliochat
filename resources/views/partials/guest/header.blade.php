@@ -20,6 +20,8 @@
 
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="{{ url('sms') }}">Send Message</a></li>
+							<li><a href="{{ url('voice') }}">Voice Call</a></li>
+							<li><a href="{{ url('ivr') }}">IVR</a></li>
 							<li>
 								<a href="{{ url('logout') }}"
 									onclick="event.preventDefault();
