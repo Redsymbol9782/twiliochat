@@ -18,12 +18,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('user_access')) {
+        if(! Gate::allows('user_access')){
             return abort(401);
         }
-
         $users = User::all();
-
         return view('admin.users.index', compact('users'));
     }
 
@@ -34,12 +32,13 @@ class UsersController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('user_create')) {
+        if(!Gate::allows('user_create')){
             return abort(401);
         }
         $roles = \App\Role::get()->pluck('title', 'id')->prepend('Please select', '');
-
-        return view('admin.users.create', compact('roles'));
+		$agent_types = \App\AgentType::get()->pluck('title', 'id')->prepend('Please select', '');
+		$supports = \App\Support::get()->pluck('title', 'id')->prepend('Please select', '');
+		return view('admin.users.create', compact('roles','agent_types','supports'));
     }
 
     /**
@@ -50,13 +49,15 @@ class UsersController extends Controller
      */
     public function store(StoreUsersRequest $request)
     {
-        if (! Gate::allows('user_create')) {
+        if(!Gate::allows('user_create')){
             return abort(401);
         }
-        $user = User::create($request->all());
-
-
-
+		
+		$first_name = $request->get('first_name');
+		$last_name = $request->get('last_name');
+		$name = $first_name .' '. $last_name;
+		$request['name'] = $name;
+		$user = User::create($request->all());
         return redirect()->route('admin.users.index');
     }
 
@@ -69,14 +70,14 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        if (! Gate::allows('user_edit')) {
+        if(!Gate::allows('user_edit')){
             return abort(401);
         }
         $roles = \App\Role::get()->pluck('title', 'id')->prepend('Please select', '');
-
+		$agent_types = \App\AgentType::get()->pluck('title', 'id')->prepend('Please select', '');
+		$supports = \App\Support::get()->pluck('title', 'id')->prepend('Please select', '');
         $user = User::findOrFail($id);
-
-        return view('admin.users.edit', compact('user', 'roles'));
+        return view('admin.users.edit', compact('user', 'roles', 'agent_types', 'supports'));
     }
 
     /**
@@ -88,14 +89,15 @@ class UsersController extends Controller
      */
     public function update(UpdateUsersRequest $request, $id)
     {
-        if (! Gate::allows('user_edit')) {
+        if(!Gate::allows('user_edit')){
             return abort(401);
         }
-        $user = User::findOrFail($id);
+        $first_name = $request->get('first_name');
+		$last_name = $request->get('last_name');
+		$name = $first_name .' '. $last_name;
+		$request['name'] = $name;
+		$user = User::findOrFail($id);
         $user->update($request->all());
-
-
-
         return redirect()->route('admin.users.index');
     }
 

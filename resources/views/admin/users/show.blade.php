@@ -12,9 +12,29 @@
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
+						<tr>
+                            <th>@lang('quickadmin.users.fields.first_name')</th>
+                            <td>{{ $user->first_name }}</td>
+                        </tr>
+						<tr>
+                            <th>@lang('quickadmin.users.fields.last_name')</th>
+                            <td>{{ $user->last_name }}</td>
+                        </tr>
                         <tr>
                             <th>@lang('quickadmin.users.fields.name')</th>
                             <td>{{ $user->name }}</td>
+                        </tr>
+						<tr>
+                            <th>@lang('quickadmin.users.fields.area_code')</th>
+                            <td>{{ $user->area_code }}</td>
+                        </tr>
+						<tr>
+                            <th>@lang('quickadmin.users.fields.phone')</th>
+                            <td>{{ $user->phone }}</td>
+                        </tr>
+						<tr>
+                            <th>@lang('quickadmin.users.fields.location')</th>
+                            <td>{{ $user->location }}</td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.users.fields.email')</th>
@@ -22,7 +42,15 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.users.fields.role')</th>
-                            <td>{{ $user->role->title or '' }}</td>
+                            <td>{{ $user->role->title or 'N/A' }}</td>
+                        </tr>
+						<tr>
+                            <th>@lang('quickadmin.users.fields.agent_type')</th>
+                            <td>{{ $user->agentType->title or 'N/A' }}</td>
+                        </tr>
+						<tr>
+                            <th>@lang('quickadmin.users.fields.support')</th>
+                            <td>{{ $user->support->title or 'N/A' }}</td>
                         </tr>
                     </table>
                 </div>
