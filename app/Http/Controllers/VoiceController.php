@@ -1,40 +1,7 @@
-<?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Twilio\Rest\Client;
-use Twilio\Jwt\ClientToken;
-
-class VoiceController extends Controller
-{
-	public function voice(){
-		return view('voice.index');
-	}
-    public function sendSms(Request $request)
-    {
-        $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
-        $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
-        $appSid     = config('app.twilio')['TWILIO_APP_SID'];
-        $client = new Client($accountSid, $authToken);
-		
-		$post_data = $request->all();
-		/* echo '<pre>';
-		print_r($post_data);exit; */
-        try{
-            // Use the client to do fun stuff like send text messages!
-            $client->calls->create(
-				// the number you'd like to send the message to
-                $post_data['to'],
-				array(
-					// A Twilio phone number you purchased at twilio.com/console
-					'url' => "http://$host/outbound/$encodedSalesPhone"
-				)
-			);
-			return redirect()->back()->with(['success'=>'Message send successfully!']);
-		}catch (Exception $e){
-            //echo "Error: " . $e->getMessage();
-			return redirect()->back()->withErrors(['error'=>"Error: " . $e->getMessage()]);
-        }
-    }
-}
+<?phpnamespace App\Http\Controllers;use Illuminate\Http\Request;use Twilio\Rest\Client;use Twilio\Jwt\ClientToken;use Twilio\TwiML;
+class VoiceController extends Controller{	public function voice(){		return view('voice.index');	}
+	public function voice_call(Request $request){		$accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];        $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];        $appSid     = config('app.twilio')['TWILIO_APP_SID'];        $client = new Client($accountSid, $authToken);
+		$userPhone = $request->get('userPhone');		$salesPhone = $request->get('salesPhone');		$encodedSalesPhone = urlencode(str_replace(' ','',$salesPhone));
+		$client = new Twilio\Rest\Client(			$accountSid,			$authToken		);		$url = config('app.url');    		$client->calls			->create($userPhone, // to				$request->get('salesPhone'), // from				array(					"method" => "GET",					"statusCallback" => $url."/public/twilio_log.php",					"statusCallbackEvent" => array("initiated","answered"),					"statusCallbackMethod" => "POST",					"url" => $url."/outbound/".$encodedSalesPhone				)		);		// return a JSON response		return array('message' => 'Call incoming!');	}
+	public function outbound_call($salesPhone=null){		// A message for Twilio's TTS engine to repeat		$sayMessage = 'Thanks for contacting our sales department. Our        next available representative will take your call.';		$twiml = new Twilio\Twiml();		$twiml->say($sayMessage, array('voice' => 'alice'));		$twiml->dial($salesPhone);		$response = Response::make($twiml, 200);		$response->header('Content-Type', 'text/xml');		return $response;	}
+}
