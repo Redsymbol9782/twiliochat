@@ -30,7 +30,7 @@ class IvrController extends Controller
         $gather = $response->gather(
             [
                 'numDigits' => 1,
-                'action' => route('menu-response', [], false)
+                'action' => url('ivr/menu_response')
             ]
         );
 
@@ -65,7 +65,7 @@ class IvrController extends Controller
             'Returning to the main menu',
             ['voice' => 'Alice', 'language' => 'en-GB']
         );
-        $response->redirect(route('welcome', [], false));
+        $response->redirect('ivr/welcome');
 
         return $response;
     }
@@ -107,7 +107,7 @@ class IvrController extends Controller
                 'Returning to the main menu',
                 ['voice' => 'Alice', 'language' => 'en-GB']
             );
-            $errorResponse->redirect(route('welcome', [], false));
+            $errorResponse->redirect('ivr/welcome');
 
             return $errorResponse;
         }
@@ -147,7 +147,7 @@ class IvrController extends Controller
     {
         $response = new Twiml();
         $gather = $response->gather(
-            ['numDigits' => '1', 'action' => route('planet-connection', [], false)]
+            ['numDigits' => '1', 'action' => url('ivr/planet')]
         );
         $gather->say(
             'To call the planet Brodo Asogi, press 2. To call the planet' .
