@@ -28,7 +28,7 @@ class SmsController extends Controller
                 $post_data['to'],
 				array(
 					// A Twilio phone number you purchased at twilio.com/console
-					'from' => '+17177143029',
+					'from' => '+18507249694',
 					// the body of the text message you'd like to send
 					'body' => $post_data['body']
 				)

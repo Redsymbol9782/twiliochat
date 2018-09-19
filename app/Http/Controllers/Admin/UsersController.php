@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUsersRequest;
 use App\Http\Requests\Admin\UpdateUsersRequest;
 
+/* use Twilio\Rest\Client;
+use Twilio\Jwt\ClientToken; */
+
 class UsersController extends Controller
 {
     /**
@@ -57,7 +60,25 @@ class UsersController extends Controller
 		$last_name = $request->get('last_name');
 		$name = $first_name .' '. $last_name;
 		$request['name'] = $name;
+		$area_code = $request->get('area_code');
+		$phone = $request->get('phone');
+		$phone_number = $area_code.$phone;
 		$user = User::create($request->all());
+		
+		/* $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
+        $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
+        $appSid     = config('app.twilio')['TWILIO_APP_SID'];
+		
+        $twilio = new Client($accountSid, $authToken);
+		$validation_request = $twilio->validationRequests
+            ->create($phone_number, // phoneNumber
+				array(
+					"friendlyName" => "My Home Phone Number"
+				)
+            );
+		echo '<pre>';
+		print_r($validation_request->friendlyName);exit; */
+		
         return redirect()->route('admin.users.index');
     }
 

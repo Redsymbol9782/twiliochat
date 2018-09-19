@@ -1,0 +1,5 @@
+i. implement twilio outbound voice call using outbound api.
+ii. implement twilio inbound voice call using api.
+iii. verify caller id for test the voice call in twilio a/c, and test the voice call.
+iv. make controller action for IVR request using api response.
+iv. add the new caller id with verify in twilio. // working...
