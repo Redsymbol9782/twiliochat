@@ -19,10 +19,11 @@
 						</a>
 
 						<ul class="dropdown-menu" role="menu">
+							
 							<li><a href="{{ url('sms') }}">Send Message</a></li>
-
 							<li><a href="{{ url('voice') }}">Voice Call</a></li>
 							<li><a href="{{ url('ivr') }}">IVR</a></li>
+							<li><a href="{{ url('verify_caller_id') }}">Verify Caller ID</a></li>
 							<li><a href="{{ url('change_password') }}">Change Password</a></li>
 
 							<li>
