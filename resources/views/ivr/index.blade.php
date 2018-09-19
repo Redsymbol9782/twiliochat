@@ -15,7 +15,7 @@
 							{{Session::get('success')}}
 						</div>
 					@endif
-                    Call the number you have configured under the
+                    Call the number you have configured under the 
 					<a href='https://www.twilio.com/user/account/phone-numbers/incoming'>
 					Manage Numbers page in your Twilio account</a> or head to this
 				

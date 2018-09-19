@@ -48,6 +48,7 @@
     </div>
 </div>
 
+
 <script>
 $(function(){
 	$('#contactForm').on('submit', function(e) {
@@ -76,4 +77,5 @@ $(function(){
 	});
 });
 </script>
+
 @endsection
