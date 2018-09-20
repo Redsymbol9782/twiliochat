@@ -23,7 +23,8 @@ Route::post('/voice/call', function () {
     );
     $url = config('app.url');
     
-	$client->calls
+	$url = config('app.url');
+    $client->calls
         ->create($userPhone, // to
             Input::get('salesPhone'), // from
             array(
@@ -41,8 +42,7 @@ Route::post('/voice/call', function () {
 // POST URL to handle form submission and make outbound call
 Route::get('/outbound/{salesPhone}', function ($salesPhone) {
     // A message for Twilio's TTS engine to repeat
-    $sayMessage = 'Thanks for contacting our sales department. Our
-        next available representative will take your call.';
+    $sayMessage = 'Thanks for contacting our sales department. Our next available representative will take your call.';
 
     $twiml = new Twilio\Twiml();
     $twiml->say($sayMessage, array('voice' => 'alice'));
@@ -55,11 +55,10 @@ Route::get('/outbound/{salesPhone}', function ($salesPhone) {
 
 Route::group(['middleware' => ['checkforstar'], 'prefix' => 'ivr', 'as' => 'ivr.'], function () {
 	Route::get('/', 'IvrController@ivr');
-	Route::get('/welcome', 'IvrController@showWelcome');
+	Route::post('/welcome', 'IvrController@showWelcome');
 	Route::post('/menu_response', 'IvrController@showMenuResponse');
 	Route::post('/planet', 'IvrController@showPlanetConnection');
 });
-
 
 /** Authentication Routes **/
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');

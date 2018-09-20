@@ -24,13 +24,13 @@
                 <div class="panel-body">
 					<h1>{{ $user['name'] }}</h1>
 					<p>Caller Status:
-						@if($user['verified'] == 'Yes')
+						@if($user['verified'] == 1)
 							Verified
 						@else
 							Not Verified
 						@endif
 					</p>
-					@if($user['verified'] == 'No')
+					@if($user['verified'] == 0)
 						<p>
 						  <a href="{{ url('user_verify') }}">Verify your account now</a>
 						</p>
