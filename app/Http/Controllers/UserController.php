@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 use Twilio\Rest\Client;
 
-//require 'vendor/authy/php/lib/Authy/AuthyApi.php';
-//require_once 'vendor/authy/php/lib/Authy/AuthyApi.php';
+
+include('vendor/authy/php/lib/Authy/AuthyApi.php');
 class UserController extends Controller
 {
 	public function show_status(){
@@ -20,14 +20,14 @@ class UserController extends Controller
     public function verifyUser(){
 		$user = Auth::user();
 		
-		require_once('vendor/authy/php/lib/Authy/AuthyApi.php');
+		$authyApi = new AuthyApi(config('app.twilio')['AUTHY_API_KEY']);
 		
-		$authyApi = new AuthyApi('FjJo1eR7n0UYDkLVxIS455FcI36Q5nRr');
 		$authyUser = $authyApi->registerUser(
             $user['email'],
             $user['phone'],
             $user['area_code']
         );
+		
         if($authyUser->ok()){
             $updateAuthy = array(
 				'authy_id' => $authyUser->id()
@@ -38,27 +38,33 @@ class UserController extends Controller
             return view('user.verifyUser');
         }else{
 			$errors = $this->getAuthyErrors($authyUser->errors());
-			echo '<pre>';
-			print_r($errors);exit;
 			return redirect('verify_caller_id')->withErrors(['error'=> new MessageBag($errors)]);
 		}
 	}
 	public function verify(Request $request, AuthyApi $authyApi, Client $client){
         $token = $request->input('token');
-        $verification = $authyApi->verifyToken($user->authy_id, $token);
-
-        if($verification->ok()){
-            $user->verified = true;
-            $user->save();
+		$user = Auth::user();
+		$verification = $authyApi->verifyToken($user['authy_id'], $token);
+		
+		if($verification->ok()){
+			$updateArr = array(
+				'verified' => 1
+			);
+			DB::table('users')->where('id',$user['id'])->update($updateArr);
             $this->sendSmsNotification($client, $user);
-            return redirect('verify_caller_id');
+			$request->session()->flash(
+                'status',
+                'Verification complete!'
+            );
+            return redirect('verify_caller_id'); 
         }else{
             $errors = $this->getAuthyErrors($verification->errors());
-			return redirect('user_verify')->withErrors(['error'=> new MessageBag($errors)]);
+			return redirect('user_verify')->withErrors(['error'=> $errors]);
 		}
     }
     public function verifyResend(Request $request, AuthyApi $authyApi){
-        $sms = $authyApi->requestSms($user->authy_id);
+		$user = Auth::user();
+        $sms = $authyApi->requestSms($user['authy_id']);
         if ($sms->ok()){
             $request->session()->flash(
                 'status',
@@ -67,7 +73,7 @@ class UserController extends Controller
             return redirect('user_verify');
         } else {
             $errors = $this->getAuthyErrors($sms->errors());
-            return redirect('user_verify')->withErrors(['error'=> new MessageBag($errors)]);
+            return redirect('user_verify')->withErrors(['error'=> $errors]);
         }
     }
     private function getAuthyErrors($authyErrors){
@@ -78,12 +84,13 @@ class UserController extends Controller
         return $errors;
     }
     private function sendSmsNotification($client, $user){
-        $twilioNumber = config('app.twilio')['TWILIO_NUMBER'] or die(
+		$twilioNumber = config('app.twilio')['TWILIO_NUMBER'] or die(
             "TWILIO_NUMBER is not set in the environment"
         );
         $messageBody = 'You did it! Verification complete :)';
+		$fullNumber = $user['area_code'].$user['phone'];
         $client->messages->create(
-            $user->fullNumber(),    // Phone number which receives the message
+            $fullNumber,    // Phone number which receives the message
             [
                 "from" => $twilioNumber, // From a Twilio number in your account
                 "body" => $messageBody

@@ -143,7 +143,8 @@ return [
 		'TWILIO_ACCOUNT_SID' => env('TWILIO_ACCOUNT_SID'),
 		'TWILIO_AUTH_TOKEN' => env('TWILIO_AUTH_TOKEN'),
 		'TWILIO_APP_SID' => env('TWILIO_APP_SID'),
-        'TWILIO_NUMBER' => env('TWILIO_NUMBER')
+		'TWILIO_NUMBER' => env('TWILIO_NUMBER'),
+		'AUTHY_API_KEY' => env('AUTHY_API_KEY')
 	],
 
     /*
