@@ -2,8 +2,12 @@
 use Illuminate\Support\Facades\Input;
 
 $this->get('/', 'Guest\HomeController@index')->name('guest.home');
-Route::get('/sms', ['uses' => 'SmsController@sms','middleware' => 'auth']);
-Route::post('/sms', ['uses' => 'SmsController@sendSms','middleware' => 'auth']);
+
+Route::get('/sms', 'SmsController@sms');
+Route::post('/sms', 'SmsController@sendSms');
+
+Route::get('/chat', 'ChatController@chat');
+Route::post('/chat/token', 'ChatController@generate');
 
 Route::get('/verify_caller_id', ['uses' => 'UserController@show_status','middleware' => 'auth']);
 Route::get('/user_verify', ['uses' => 'UserController@verifyUser','middleware' => 'auth']);
