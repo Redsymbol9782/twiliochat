@@ -38,6 +38,7 @@ return [
     'twilio' => [
         'account-sid' => env('TWILIO_ACCOUNT_SID'),
         'token' => env('TWILIO_AUTH_TOKEN'),
+        'ipmServiceSid' => env('TWILIO_IPM_SERVICE_SID'),
     ],
 
 ];

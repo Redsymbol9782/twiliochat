@@ -6,3 +6,4 @@
 <script src="https://js.stripe.com/v3/" type="text/javascript"></script>
 
 <meta name="_token" content="{{ csrf_token() }}" />
+<meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">

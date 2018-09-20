@@ -51,7 +51,8 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/twiliochat'),
+    'url' => env('APP_URL', 'http://demo.redsymbolhost.com/twilio_ivr'),
+	//'url' => env('APP_URL', 'http://localhost/twiliochat'),
 
     /*
     |--------------------------------------------------------------------------
@@ -142,7 +143,7 @@ return [
 		'TWILIO_ACCOUNT_SID' => env('TWILIO_ACCOUNT_SID'),
 		'TWILIO_AUTH_TOKEN' => env('TWILIO_AUTH_TOKEN'),
 		'TWILIO_APP_SID' => env('TWILIO_APP_SID'),
-		'TWILIO_NUMBER' => env('TWILIO_NUMBER')
+        'TWILIO_NUMBER' => env('TWILIO_NUMBER')
 	],
 
     /*
@@ -201,9 +202,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-		App\Providers\AuthyApiProvider::class,
-		App\Providers\TwilioRestClientProvider::class,
-	
+        App\Providers\TwilioAccessTokenProvider::class,
+        App\Providers\TwilioIPMGrantProvider::class,
+        App\Providers\AuthyApiProvider::class,
+        App\Providers\TwilioRestClientProvider::class,
+
+
     ],
 
     /*
