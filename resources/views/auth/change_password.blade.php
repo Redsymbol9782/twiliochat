@@ -1,8 +1,5 @@
-@if($role_title == 'Customer')
-	@extends('layouts.guest')
-@else
-	@extends('layouts.app')
-@endif
+@extends('layouts.app')
+
 
 @section('content')
     <h3 class="page-title">Change password</h3>

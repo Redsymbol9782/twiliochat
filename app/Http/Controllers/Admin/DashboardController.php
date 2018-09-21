@@ -26,12 +26,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-		$authUser = Auth::user();
+		/* $authUser = Auth::user();
 		$role = DB::table('roles')->where('id',$authUser['role_id'])->first();
 		if($role->title == 'Customer'){
 			return redirect()->intended('/');
-		}else{
-			return view('admin.dashboard');
-		}
+		}else{ */
+		return view('admin.dashboard');
+		//}
     }
 }

@@ -1,26 +1,31 @@
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-<script src="//cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
-<script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
-<script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
-<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
-<script src="{{ url('public/quickadmin/js') }}/bootstrap.min.js"></script>
-<script src="{{ url('public/quickadmin/js') }}/select2.full.min.js"></script>
-<script src="{{ url('public/quickadmin/js') }}/main.js"></script>
+<!-- jQuery 3 -->
+<script src="{{URL::asset('public/bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{URL::asset('public/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 
-<script src="{{ url('public/adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
-<script src="{{ url('public/adminlte/plugins/fastclick/fastclick.js') }}"></script>
-<script src="{{ url('public/adminlte/js/app.min.js') }}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{{URL::asset('public/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<!-- FastClick -->
+<script src="{{URL::asset('public/bower_components/fastclick/lib/fastclick.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{URL::asset('public/dist/js/adminlte.min.js')}}"></script>
+<!-- Sparkline -->
+<script src="{{URL::asset('public/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js')}}"></script>
+<!-- jvectormap  -->
+<script src="{{URL::asset('public/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
+<script src="{{URL::asset('public/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+<!-- SlimScroll -->
+<script src="{{URL::asset('public/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<!-- ChartJS -->
+<script src="{{URL::asset('public/bower_components/chart.js/Chart.js')}}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{URL::asset('public/dist/js/pages/dashboard2.js')}}"></script>
+<script src="{{URL::asset('public/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script src="{{ url('public/js/main.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{URL::asset('public/dist/js/demo.js')}}"></script>
+
 <script>
     window._token = '{{ csrf_token() }}';
 </script>
-
-
 
 @yield('javascript')

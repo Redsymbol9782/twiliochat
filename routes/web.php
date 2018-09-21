@@ -7,7 +7,9 @@ Route::get('/sms', 'SmsController@sms');
 Route::post('/sms', 'SmsController@sendSms');
 
 Route::get('/chat', 'ChatController@chat');
-Route::post('/chat/token', 'ChatController@generate');
+Route::post('/chat/token', 'TokenController@generate');
+
+Route::get('/video_chat', 'VideochatController@index');
 
 Route::get('/verify_caller_id', ['uses' => 'UserController@show_status','middleware' => 'auth']);
 Route::get('/user_verify', ['uses' => 'UserController@verifyUser','middleware' => 'auth']);
@@ -80,18 +82,18 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('auth.password.reset');
 
 /** Admin All Routes **/
-Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function (){
-	Route::get('/', 'Admin\DashboardController@index')->name('dashboard');
-    Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
-    Route::resource('roles', 'Admin\RolesController');
-    Route::post('roles_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
-    Route::resource('users', 'Admin\UsersController');
-    Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
-    Route::resource('events', 'Admin\EventsController');
-    Route::post('events_mass_destroy', ['uses' => 'Admin\EventsController@massDestroy', 'as' => 'events.mass_destroy']);
-    Route::resource('tickets', 'Admin\TicketsController');
-    Route::post('tickets_mass_destroy', ['uses' => 'Admin\TicketsController@massDestroy', 'as' => 'tickets.mass_destroy']);
-    Route::resource('payments', 'Admin\PaymentsController');
+Route::group(['middleware' => ['auth']], function (){
+	Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::resource('roles', 'RolesController');
+    Route::post('roles_mass_destroy', ['uses' => 'RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
+    Route::resource('users', 'UsersController');
+    Route::post('users_mass_destroy', ['uses' => 'UsersController@massDestroy', 'as' => 'users.mass_destroy']);
+    Route::resource('events', 'EventsController');
+    Route::post('events_mass_destroy', ['uses' => 'EventsController@massDestroy', 'as' => 'events.mass_destroy']);
+    Route::resource('tickets', 'TicketsController');
+    Route::post('tickets_mass_destroy', ['uses' => 'TicketsController@massDestroy', 'as' => 'tickets.mass_destroy']);
+    Route::resource('payments', 'PaymentsController');
 });
 
 /** for phpmyadmin **/
