@@ -40,10 +40,11 @@ class UsersController extends Controller
             return abort(401);
         }
         $roles = \App\Role::get()->pluck('title', 'id')->prepend('Please select', '');
+        $permissions = \App\Permission::get()->pluck('title', 'id')->prepend('Please select', '');
 		$agent_types = \App\AgentType::get()->pluck('title', 'id')->prepend('Please select', '');
 		$supports = \App\Support::get()->pluck('title', 'id')->prepend('Please select', '');
 		$title = "User";
-		return view('users.create', compact('roles','agent_types','supports','title'));
+		return view('users.create', compact('roles','permissions','agent_types','supports','title'));
     }
 
     /**
@@ -97,11 +98,12 @@ class UsersController extends Controller
             return abort(401);
         }
         $roles = \App\Role::get()->pluck('title', 'id')->prepend('Please select', '');
+		$permissions = \App\Permission::get()->pluck('title', 'id')->prepend('Please select', '');
 		$agent_types = \App\AgentType::get()->pluck('title', 'id')->prepend('Please select', '');
 		$supports = \App\Support::get()->pluck('title', 'id')->prepend('Please select', '');
         $user = User::findOrFail($id);
 		$title = "User";
-        return view('users.edit', compact('user', 'roles', 'agent_types', 'supports', 'title'));
+        return view('users.edit', compact('user', 'roles', 'permissions', 'agent_types', 'supports', 'title'));
     }
 
     /**

@@ -49,6 +49,23 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('role_delete', function ($user) {
             return in_array($user->role_id, [1]);
         });
+		
+		// Auth gates for: Permissions
+        Gate::define('permission_access', function ($user) {
+            return in_array($user->permission_id, [1]);
+        });
+        Gate::define('permission_create', function ($user) {
+            return in_array($user->permission_id, [1]);
+        });
+        Gate::define('permission_edit', function ($user) {
+            return in_array($user->permission_id, [1]);
+        });
+        Gate::define('permission_view', function ($user) {
+            return in_array($user->permission_id, [1]);
+        });
+        Gate::define('permission_delete', function ($user) {
+            return in_array($user->permission_id, [1]);
+        });
 
         // Auth gates for: Users
         Gate::define('user_access', function ($user) {
@@ -86,16 +103,16 @@ class AuthServiceProvider extends ServiceProvider
 
         // Auth gates for: Tickets
         Gate::define('ticket_access', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1, 2, 3]);
         });
         Gate::define('ticket_create', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1,3]);
         });
         Gate::define('ticket_edit', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1,3]);
         });
         Gate::define('ticket_view', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1, 2, 3]);
         });
         Gate::define('ticket_delete', function ($user) {
             return in_array($user->role_id, [1]);

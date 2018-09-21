@@ -31,8 +31,7 @@ class UpdateUsersRequest extends FormRequest
             'password' => 'required',
             'location' => 'required',
             'role_id' => 'required',
-            'agent_type_id' => 'required',
-            'support_id' => 'required',
+            'permission_id' => 'required'
         ];
     }
 }

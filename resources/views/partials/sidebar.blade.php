@@ -70,15 +70,21 @@
 					</span>
 				</a>
 				<ul class="treeview-menu">
+					@can('user_access')
+					<li class="{{ $request->segment(2) == 'users' ? 'active active-sub' : '' }}">
+						<a href="{{ route('users.index') }}"><i class="fa fa-user"></i> @lang('quickadmin.users.title')</a>
+					</li>
+					@endcan
+					
 					@can('role_access')
 					<li class="{{ $request->segment(2) == 'roles' ? 'active active-sub' : '' }}">
 						<a href="{{ route('roles.index') }}"><i class="fa fa-circle-o"></i>@lang('quickadmin.roles.title')</a>
 					</li>
 					@endcan
 					
-					@can('user_access')
-					<li class="{{ $request->segment(2) == 'users' ? 'active active-sub' : '' }}">
-						<a href="{{ route('users.index') }}"><i class="fa fa-user"></i> @lang('quickadmin.users.title')</a>
+					@can('permission_access')
+					<li class="{{ $request->segment(2) == 'permissions' ? 'active active-sub' : '' }}">
+						<a href="{{ route('permissions.index') }}"><i class="fa fa-circle-o"></i>@lang('quickadmin.permissions.title')</a>
 					</li>
 					@endcan
 				</ul>

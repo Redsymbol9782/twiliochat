@@ -100,8 +100,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-6 form-group">
-                    {!! Form::label('agent_type_id', 'Agent Type*', ['class' => 'control-label']) !!}
-                    {!! Form::select('agent_type_id', $agent_types, old('agent_type_id'), ['class' => 'form-control select2', 'required' => 'true']) !!}
+                    {!! Form::label('agent_type_id', 'Agent Type', ['class' => 'control-label']) !!}
+                    {!! Form::select('agent_type_id', $agent_types, old('agent_type_id'), ['class' => 'form-control select2']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('agent_type_id'))
                         <p class="help-block">
@@ -110,8 +110,8 @@
                     @endif
                 </div>
 				<div class="col-xs-6 form-group">
-                    {!! Form::label('support_id', 'Support*', ['class' => 'control-label']) !!}
-                    {!! Form::select('support_id', $supports, old('support_id'), ['class' => 'form-control select2', 'required' => 'true']) !!}
+                    {!! Form::label('support_id', 'Support', ['class' => 'control-label']) !!}
+                    {!! Form::select('support_id', $supports, old('support_id'), ['class' => 'form-control select2']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('support_id'))
                         <p class="help-block">
@@ -120,6 +120,18 @@
                     @endif
                 </div>
             </div>
+			<div class="row">
+                <div class="col-xs-6 form-group">
+                    {!! Form::label('permission_id', 'Permission', ['class' => 'control-label']) !!}
+                    {!! Form::select('permission_id', $permissions, old('permission_id'), ['class' => 'form-control select2', 'required' => 'true']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('permission_id'))
+                        <p class="help-block">
+                            {{ $errors->first('permission_id') }}
+                        </p>
+                    @endif
+                </div>
+			</div>
 			
 		</div>
     </div>
