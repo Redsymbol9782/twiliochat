@@ -6,10 +6,7 @@
                 @lang('quickadmin.quickadmin_title')
             </a>
         </div>
-        <a href="javascript:;"
-           class="menu-toggler responsive-toggler"
-           data-toggle="collapse"
-           data-target=".navbar-collapse">
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
         </a>
 
         <div class="top-menu">

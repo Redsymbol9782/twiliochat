@@ -187,13 +187,13 @@
 				<li class="dropdown user user-menu">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<img src="{{URL::asset('public/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
-						<span class="hidden-xs">Alexander Pierce</span>
+						<span class="hidden-xs">{{ Auth::user()->name }}</span>
 					</a>
 					<ul class="dropdown-menu">
 						<!-- User image -->
 						<li class="user-header">
 							<img src="{{URL::asset('public/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-							<p>Alexander Pierce - Web Developer <small>Member since Nov. 2012</small></p>
+							<p>{{ Auth::user()->name }} <small>Member since {{ date('F j, Y',strtotime(Auth::user()->created_at)) }}</small></p>
 						</li>
 						<!-- Menu Body -->
 						<li class="user-body">
