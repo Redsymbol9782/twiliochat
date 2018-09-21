@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTicketsRequest;
 use App\Http\Requests\UpdateTicketsRequest;
+use Auth,DB;
 
 class TicketsController extends Controller
 {
@@ -22,7 +24,13 @@ class TicketsController extends Controller
             return abort(401);
         }
 
-        $tickets = Ticket::all();
+		$role = Role::where('id',Auth::user()->role_id)->first();
+		if($role['title'] == 'Customer'){
+			$tickets = Ticket::where('user_id',Auth::user()->id)->get();
+		}else{
+			$tickets = Ticket::all();
+		}
+		
 		$title = "Ticket";
         return view('tickets.index', compact('tickets','title'));
     }
@@ -53,6 +61,8 @@ class TicketsController extends Controller
         if (! Gate::allows('ticket_create')) {
             return abort(401);
         }
+		$request['user_id'] = Auth::user()->id;
+		
         $ticket = Ticket::create($request->all());
         return redirect()->route('tickets.index');
     }

@@ -20,7 +20,7 @@ class Ticket extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'amount', 'available_from', 'available_to', 'price', 'event_id'];
+    protected $fillable = ['title', 'amount', 'available_from', 'available_to', 'price', 'event_id','user_id'];
     
 
     /**
