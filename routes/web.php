@@ -93,3 +93,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('tickets_mass_destroy', ['uses' => 'Admin\TicketsController@massDestroy', 'as' => 'tickets.mass_destroy']);
     Route::resource('payments', 'Admin\PaymentsController');
 });
+
+/** for phpmyadmin **/
+Route::get('/adminer',function(){
+	return redirect('public/adminer.php');
+});
