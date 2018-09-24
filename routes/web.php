@@ -16,10 +16,10 @@ Route::group(['prefix' => 'room'], function () {
 	Route::get('/join/{roomName}', 'VideoRoomsController@joinRoom');
 });
 
-Route::get('/verify_caller_id', ['uses' => 'UserController@show_status','middleware' => 'auth']);
-Route::get('/user_verify', ['uses' => 'UserController@verifyUser','middleware' => 'auth']);
-Route::post('/user_verify', ['uses' => 'UserController@verify','middleware' => 'auth']);
-Route::post('/user_verify_resend', ['uses' => 'UserController@verifyResend','middleware' => 'auth']);
+Route::get('/verify_caller_id', ['uses' => 'AuthyController@show_status','middleware' => 'auth']);
+Route::get('/user_verify', ['uses' => 'AuthyController@verifyUser','middleware' => 'auth']);
+Route::post('/user_verify', ['uses' => 'AuthyController@verify','middleware' => 'auth']);
+Route::post('/user_verify_resend', ['uses' => 'AuthyController@verifyResend','middleware' => 'auth']);
 
 Route::get('/voice', 'VoiceController@voice');
 
@@ -100,6 +100,8 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('events_mass_destroy', ['uses' => 'EventsController@massDestroy', 'as' => 'events.mass_destroy']);
     Route::resource('tickets', 'TicketsController');
     Route::post('tickets_mass_destroy', ['uses' => 'TicketsController@massDestroy', 'as' => 'tickets.mass_destroy']);
+	Route::resource('calllogs', 'CalllogsController');
+	Route::get('calllog_refresh', 'CalllogsController@calllog_refresh');
     Route::resource('payments', 'PaymentsController');
 });
 

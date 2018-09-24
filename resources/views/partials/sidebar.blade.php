@@ -92,6 +92,14 @@
 			</li>
 			@endcan
 			
+			
+			@can('calllog_access')
+			<li class="{{ $request->segment(1) == 'calllog' ? 'active active-sub' : '' }}">
+				<a href="{{ route('calllogs.index') }}"><i class="fa fa-phone"></i> @lang('quickadmin.calllog.title')</a>
+			</li>
+			@endcan
+				
+			
 			<li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
                 <a href="{{ route('auth.change_password') }}">
                     <i class="fa fa-key"></i>

@@ -696,3 +696,11 @@
 </div>
 <!-- /.row -->
 @endsection
+
+@section('javascript') 
+    <script>
+		@if(Session::has('success'))
+			swal('Succuss','{{Session::get('success')}}','success');
+		@endif
+	</script>
+@endsection
