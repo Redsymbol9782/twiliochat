@@ -78,5 +78,8 @@
             window.route_mass_crud_entries_destroy = '{{ route('events.mass_destroy') }}';
         @endcan
 
+		@if(Session::has('success'))
+			swal('Succuss','{{Session::get('success')}}','success');
+		@endif
     </script>
 @endsection
