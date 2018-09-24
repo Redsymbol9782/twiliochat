@@ -81,6 +81,5 @@
         @can('ticket_delete')
             window.route_mass_crud_entries_destroy = '{{ route('tickets.mass_destroy') }}';
         @endcan
-
     </script>
 @endsection

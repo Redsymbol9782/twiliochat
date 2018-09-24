@@ -24,18 +24,19 @@
 				</span>
 			</div>
 		</form>
+		
 		<!-- /.search form -->
 		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">MAIN NAVIGATION</li>
-			<li class="{{ $request->segment(1) == 'home' ? 'active' : '' }} treeview menu-open">
+			<li class="{{ $request->segment(1) == 'dashboard' ? 'active' : '' }}">
 				<a href="{{ route('dashboard') }}">
 					<i class="fa fa-dashboard"></i> <span>@lang('quickadmin.qa_dashboard')</span>
 				</a>
 			</li>
 			
 			@can('event_access')
-			<li class="{{ $request->segment(2) == 'events' ? 'active' : '' }}">
+			<li class="{{ $request->segment(1) == 'events' ? 'active' : '' }}">
 				<a href="{{ route('events.index') }}">
 					<i class="fa fa-th"></i> <span>@lang('quickadmin.events.title')</span>
 				</a>
@@ -43,7 +44,7 @@
 			@endcan
 			
 			@can('ticket_access')
-            <li class="{{ $request->segment(2) == 'tickets' ? 'active' : '' }}">
+            <li class="{{ $request->segment(1) == 'tickets' ? 'active' : '' }}">
                 <a href="{{ route('tickets.index') }}">
                     <i class="fa fa-gears"></i>
                     <span class="title">@lang('quickadmin.tickets.title')</span>
@@ -52,7 +53,7 @@
             @endcan
 			
 			<?php /* @can('payment_access')
-            <li class="{{ $request->segment(2) == 'payments' ? 'active' : '' }}">
+            <li class="{{ $request->segment(1) == 'payments' ? 'active' : '' }}">
                 <a href="{{ route('admin.payments.index') }}">
                     <i class="fa fa-gears"></i>
                     <span class="title">@lang('quickadmin.payments.title')</span>
@@ -71,19 +72,19 @@
 				</a>
 				<ul class="treeview-menu">
 					@can('user_access')
-					<li class="{{ $request->segment(2) == 'users' ? 'active active-sub' : '' }}">
+					<li class="{{ $request->segment(1) == 'users' ? 'active active-sub' : '' }}">
 						<a href="{{ route('users.index') }}"><i class="fa fa-user"></i> @lang('quickadmin.users.title')</a>
 					</li>
 					@endcan
 					
 					@can('role_access')
-					<li class="{{ $request->segment(2) == 'roles' ? 'active active-sub' : '' }}">
+					<li class="{{ $request->segment(1) == 'roles' ? 'active active-sub' : '' }}">
 						<a href="{{ route('roles.index') }}"><i class="fa fa-circle-o"></i>@lang('quickadmin.roles.title')</a>
 					</li>
 					@endcan
 					
 					@can('permission_access')
-					<li class="{{ $request->segment(2) == 'permissions' ? 'active active-sub' : '' }}">
+					<li class="{{ $request->segment(1) == 'permissions' ? 'active active-sub' : '' }}">
 						<a href="{{ route('permissions.index') }}"><i class="fa fa-circle-o"></i>@lang('quickadmin.permissions.title')</a>
 					</li>
 					@endcan
