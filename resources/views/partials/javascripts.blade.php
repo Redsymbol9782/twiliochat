@@ -1,6 +1,8 @@
+@inject('request', 'Illuminate\Http\Request')
 <!-- jQuery 3 -->
 <!--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>-->
-<script src="{{URL::asset('public/bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!--<script src="{{URL::asset('public/bower_components/jquery/dist/jquery.min.js')}}"></script>-->
 <script src="{{URL::asset('public/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 
 <!-- Bootstrap 3.3.7 -->
@@ -19,7 +21,9 @@
 <!-- ChartJS -->
 <script src="{{URL::asset('public/bower_components/chart.js/Chart.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+@if($request->segment(1) == 'dashboard')
 <script src="{{URL::asset('public/dist/js/pages/dashboard2.js')}}"></script>
+@endif
 <script src="{{URL::asset('public/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script src="{{ url('public/js/main.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
