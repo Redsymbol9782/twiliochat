@@ -82,7 +82,7 @@ class UsersController extends Controller
 		echo '<pre>';
 		print_r($validation_request->friendlyName);exit; */
 		
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success','User added successfully!');
     }
 
 
@@ -124,7 +124,7 @@ class UsersController extends Controller
 		$request['name'] = $name;
 		$user = User::findOrFail($id);
         $user->update($request->all());
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success','User updated successfully!');
     }
 
 
@@ -153,13 +153,12 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        if (! Gate::allows('user_delete')) {
+        if(! Gate::allows('user_delete')){
             return abort(401);
         }
         $user = User::findOrFail($id);
         $user->delete();
-
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success','User delete successfully!');
     }
 
     /**

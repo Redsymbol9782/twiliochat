@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTicketsRequest;
 use App\Http\Requests\UpdateTicketsRequest;
-use Auth,DB;
+use Auth,DB,Session;
 
 class TicketsController extends Controller
 {
@@ -62,9 +62,8 @@ class TicketsController extends Controller
             return abort(401);
         }
 		$request['user_id'] = Auth::user()->id;
-		
-        $ticket = Ticket::create($request->all());
-        return redirect()->route('tickets.index');
+		$ticket = Ticket::create($request->all());
+        return redirect()->route('tickets.index')->with('success','Ticket created successfully!');
     }
 
 
@@ -100,7 +99,7 @@ class TicketsController extends Controller
         }
         $ticket = Ticket::findOrFail($id);
         $ticket->update($request->all());
-        return redirect()->route('tickets.index');
+        return redirect()->route('tickets.index')->with('success','Ticket updated successfully!');
     }
 
 
@@ -134,8 +133,7 @@ class TicketsController extends Controller
         }
         $ticket = Ticket::findOrFail($id);
         $ticket->delete();
-
-        return redirect()->route('tickets.index');
+        return redirect()->route('tickets.index')->with('success','Ticket delete successfully!');
     }
 
     /**

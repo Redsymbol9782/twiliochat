@@ -53,7 +53,7 @@ class RolesController extends Controller
             return abort(401);
         }
         $role = Role::create($request->all());
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('success','Role created successfully!');
     }
 
 
@@ -87,7 +87,7 @@ class RolesController extends Controller
         }
         $role = Role::findOrFail($id);
         $role->update($request->all());
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('success','Role updated successfully!');
     }
 
 
@@ -124,7 +124,7 @@ class RolesController extends Controller
         $role = Role::findOrFail($id);
         $role->delete();
 
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('success','Role deleted successfully!');
     }
 
     /**

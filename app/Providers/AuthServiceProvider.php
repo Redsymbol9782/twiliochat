@@ -89,16 +89,16 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1, 2]);
         });
         Gate::define('event_create', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1, 2]);
         });
         Gate::define('event_edit', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1, 2]);
         });
         Gate::define('event_view', function ($user) {
             return in_array($user->role_id, [1, 2]);
         });
         Gate::define('event_delete', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1, 2]);
         });
 
         // Auth gates for: Tickets
@@ -115,7 +115,7 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1, 2, 3]);
         });
         Gate::define('ticket_delete', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1,3]);
         });
 
         // Auth gates for: Payments
