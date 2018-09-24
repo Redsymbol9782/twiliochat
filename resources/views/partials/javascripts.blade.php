@@ -2,6 +2,7 @@
 <!-- jQuery 3 -->
 <!--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>-->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <!--<script src="{{URL::asset('public/bower_components/jquery/dist/jquery.min.js')}}"></script>-->
 <script src="{{URL::asset('public/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 

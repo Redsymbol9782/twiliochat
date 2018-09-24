@@ -9,7 +9,13 @@ Route::post('/sms', 'SmsController@sendSms');
 Route::get('/chat', 'ChatController@chat');
 Route::post('/chat/token', 'TokenController@generate');
 
-Route::get('/video_chat', 'VideochatController@index');
+/*Route::get('/videochat', 'VideochatController@index');
+Route::prefix('room')->middleware('auth')->group(function() {
+   Route::get('join/{roomName}', 'VideochatController@joinRoom');
+   Route::post('create', 'VideochatController@createRoom');
+});
+
+Auth::routes();*/
 
 Route::get('/verify_caller_id', ['uses' => 'AuthyController@show_status','middleware' => 'auth']);
 Route::get('/user_verify', ['uses' => 'AuthyController@verifyUser','middleware' => 'auth']);
