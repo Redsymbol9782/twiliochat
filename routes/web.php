@@ -11,10 +11,10 @@ Route::post('/chat/token', 'TokenController@generate');
 
 Route::get('/video_chat', 'VideochatController@index');
 
-Route::get('/verify_caller_id', ['uses' => 'UserController@show_status','middleware' => 'auth']);
-Route::get('/user_verify', ['uses' => 'UserController@verifyUser','middleware' => 'auth']);
-Route::post('/user_verify', ['uses' => 'UserController@verify','middleware' => 'auth']);
-Route::post('/user_verify_resend', ['uses' => 'UserController@verifyResend','middleware' => 'auth']);
+Route::get('/verify_caller_id', ['uses' => 'AuthyController@show_status','middleware' => 'auth']);
+Route::get('/user_verify', ['uses' => 'AuthyController@verifyUser','middleware' => 'auth']);
+Route::post('/user_verify', ['uses' => 'AuthyController@verify','middleware' => 'auth']);
+Route::post('/user_verify_resend', ['uses' => 'AuthyController@verifyResend','middleware' => 'auth']);
 
 Route::get('/voice', 'VoiceController@voice');
 

@@ -11,11 +11,12 @@ use Twilio\Rest\Client;
 
 
 include('vendor/authy/php/lib/Authy/AuthyApi.php');
-class UserController extends Controller
+class AuthyController extends Controller
 {
 	public function show_status(){
 		$user = Auth::user();
-		return view('user.index',compact('user'));
+		$title = "Verification";
+		return view('authy.index',compact('user','title'));
 	}
     public function verifyUser(){
 		$user = Auth::user();
@@ -35,7 +36,8 @@ class UserController extends Controller
 			DB::table('users')->where('id',$user['id'])->update($updateAuthy);
             
             $sms = $authyApi->requestSms($authyUser->id());
-            return view('user.verifyUser');
+			$title = "Verification";
+            return view('authy.verifyUser',compact('title'));
         }else{
 			$errors = $this->getAuthyErrors($authyUser->errors());
 			return redirect('verify_caller_id')->withErrors(['error'=> new MessageBag($errors)]);
@@ -56,7 +58,7 @@ class UserController extends Controller
                 'status',
                 'Verification complete!'
             );
-            return redirect('verify_caller_id'); 
+            return redirect('dashboard')->with('success','Verification complete'); 
         }else{
             $errors = $this->getAuthyErrors($verification->errors());
 			return redirect('user_verify')->withErrors(['error'=> $errors]);
