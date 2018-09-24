@@ -101,6 +101,8 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('events_mass_destroy', ['uses' => 'EventsController@massDestroy', 'as' => 'events.mass_destroy']);
     Route::resource('tickets', 'TicketsController');
     Route::post('tickets_mass_destroy', ['uses' => 'TicketsController@massDestroy', 'as' => 'tickets.mass_destroy']);
+	Route::resource('calllogs', 'CalllogsController');
+	Route::get('calllog_refresh', 'CalllogsController@calllog_refresh');
     Route::resource('payments', 'PaymentsController');
 });
 

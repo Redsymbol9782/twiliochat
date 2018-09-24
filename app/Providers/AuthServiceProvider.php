@@ -128,6 +128,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('payment_view', function ($user) {
             return in_array($user->role_id, [1, 2]);
         });
-
+		
+		//Auth getes for: Call logs
+		Gate::define('calllog_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+		Gate::define('calllog_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
     }
 }
