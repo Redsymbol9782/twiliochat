@@ -45,6 +45,13 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo(Role::class, 'role_id');
     }
+	
+	public function setPermissionIdAttribute($input){
+        $this->attributes['permission_id'] = $input ? $input : null;
+    }
+    public function permission(){
+        return $this->belongsTo(Permission::class, 'permission_id');
+    }
     
     public function setAgentTypeIdAttribute($input){
         $this->attributes['agent_type_id'] = $input ? $input : null;

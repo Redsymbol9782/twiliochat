@@ -87,6 +87,8 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::resource('roles', 'RolesController');
     Route::post('roles_mass_destroy', ['uses' => 'RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
+	Route::resource('permissions', 'PermissionsController');
+    Route::post('permissions_mass_destroy', ['uses' => 'PermissionsController@massDestroy', 'as' => 'permissions.mass_destroy']);
     Route::resource('users', 'UsersController');
     Route::post('users_mass_destroy', ['uses' => 'UsersController@massDestroy', 'as' => 'users.mass_destroy']);
     Route::resource('events', 'EventsController');

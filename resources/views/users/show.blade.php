@@ -45,6 +45,10 @@
                             <td>{{ $user->role->title or 'N/A' }}</td>
                         </tr>
 						<tr>
+                            <th>@lang('quickadmin.users.fields.permission')</th>
+                            <td>{{ $user->permission->title or 'N/A' }}</td>
+                        </tr>
+						<tr>
                             <th>@lang('quickadmin.users.fields.agent_type')</th>
                             <td>{{ $user->agentType->title or 'N/A' }}</td>
                         </tr>
