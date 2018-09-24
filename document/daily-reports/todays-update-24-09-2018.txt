@@ -1,0 +1,6 @@
+i. update site bar menu.
+ii. make a new module name 'call log module'.
+iii. update authy user module due to changed after theme change. 
+iv. create a new db table for store call logs detail.
+v. set permission for call logs module as admin user.
+vi. update session flash message show in sweet alert.

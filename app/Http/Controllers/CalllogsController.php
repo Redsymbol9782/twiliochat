@@ -97,40 +97,4 @@ class CalllogsController extends Controller
         return view('calllogs.show', compact('calllog','title'));
     }
 
-
-    /**
-     * Remove User from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        if(! Gate::allows('user_delete')){
-            return abort(401);
-        }
-        $user = User::findOrFail($id);
-        $user->delete();
-        return redirect()->route('users.index')->with('success','User delete successfully!');
-    }
-
-    /**
-     * Delete all selected User at once.
-     *
-     * @param Request $request
-     */
-    public function massDestroy(Request $request)
-    {
-        if (! Gate::allows('user_delete')) {
-            return abort(401);
-        }
-        if ($request->input('ids')) {
-            $entries = User::whereIn('id', $request->input('ids'))->get();
-
-            foreach ($entries as $entry) {
-                $entry->delete();
-            }
-        }
-    }
-
 }
