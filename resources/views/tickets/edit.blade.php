@@ -86,7 +86,7 @@
             
         </div>
     </div>
-
+	
     {!! Form::submit(trans('quickadmin.qa_update'), ['class' => 'btn btn-danger']) !!}
 	<a href="{{ route('tickets.index') }}" class="btn btn-default" style="float:right;">@lang('quickadmin.qa_back_to_list')</a>
     {!! Form::close() !!}

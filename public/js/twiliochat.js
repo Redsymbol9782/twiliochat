@@ -82,7 +82,8 @@ var twiliochat = (function() {
 				'X-CSRF-Token': $('input[name="_token"]').val()
 			}
 		});
-		var bash_path = "https://demo.redsymbolhost.com/twilio_ivr";
+		//var bash_path = "https://demo.redsymbolhost.com/twilio_ivr";
+		var bash_path = "http://localhost/twiliochat";
 
 		$.post(bash_path+'/chat/token', {identity: username, device: 'browser'}, null, 'json')
 			.done(function(response){

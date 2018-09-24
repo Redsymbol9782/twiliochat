@@ -222,3 +222,25 @@ function processAjaxTables() {
     });
 
 }
+
+function openModalBox(){
+	var modal = $('.modal, #mask');
+	$('.open-modal').on('click', function() {
+		modal.fadeIn(300);
+	});
+	$('.close-modal, #mask').on('click', function() {
+		modal.fadeOut(800);
+	});
+}
+	openModalBox();
+	
+function voiceModalBox(){
+	var modal = $('.voicemodal, #voicemask');
+	$('.open-modal').on('click', function() {
+		modal.fadeIn(300);
+	});
+	$('.close-modal, #voicemask').on('click', function() {
+		modal.fadeOut(800);
+	});
+}
+	voiceModalBox();
