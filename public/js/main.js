@@ -236,11 +236,33 @@ function openModalBox(){
 	
 function voiceModalBox(){
 	var modal = $('.voicemodal, #voicemask');
-	$('.open-modal').on('click', function() {
+	$('.open-voicemodal').on('click', function() {
 		modal.fadeIn(300);
 	});
-	$('.close-modal, #voicemask').on('click', function() {
+	$('.close-voicemodal, #voicemask').on('click', function() {
 		modal.fadeOut(800);
 	});
 }
 	voiceModalBox();
+	
+function smsModalBox(){
+	var modal = $('.smsmodal, #smsmask');
+	$('.open-smsmodal').on('click', function() {
+		modal.fadeIn(300);
+	});
+	$('.close-smsmodal, #smsmask').on('click', function() {
+		modal.fadeOut(800);
+	});
+}
+	smsModalBox();
+	
+function smsModalBox(){
+	var modal = $('.smsmodal, #smsmask');
+	$('.open-smsmodal').on('click', function() {
+		modal.fadeIn(300);
+	});
+	$('.close-smsmodal, #smsmask').on('click', function() {
+		modal.fadeOut(800);
+	});
+}
+	smsModalBox();
