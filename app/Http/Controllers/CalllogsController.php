@@ -45,7 +45,7 @@ class CalllogsController extends Controller
 		$calllog = array();
 		foreach($calls as $k => $record){
 			$existEntry = Calllog::where('sid','=',$record->sid)->first();
-			if(count($existEntry['sid'])== 0){
+			if(count($existEntry['sid'])== 0 && !empty($record->to)){
 				$calllog[$k]['sid'] = $record->sid;
 				$dateCreated = $record->dateCreated;
 				$calllog[$k]['dateCreated'] = $dateCreated->format('Y-m-d H:i:s');

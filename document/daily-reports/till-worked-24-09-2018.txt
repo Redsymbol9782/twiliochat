@@ -1,0 +1,55 @@
+Twilio IVR Chat System
+----------------------
+Login:- 
+	- login as super admin.
+	- login as employee.
+	- login as customer.
+Reset Password/Forgot Password
+	- Reset password via send mail link.
+	
+Panel Super Admin
+--------------------
+1. Dashboard Overview Page.
+2. Change Password.
+3. Module:- 
+	i. User management:- 
+		a). Role:- manage roles, list, add, edit, delete and view. set role for employee, customer etc.
+		b). Permission:- manage permission, list, add, edit, delete and view. set permission for employee and customer.
+		c). User:- manage user, list, add, edit, delete and view.
+	ii. Tickets:- 
+		- list(show all tickets), add, edit, delete and view tickets using relevant event.
+		- send text message to related customer.
+		- voice call related to customer.
+		- chat with related customer.
+		- video call under development.
+	iii. Events:- 
+		- list, add, edit, delete and view events and also list view tickets under the event.
+	iv. Call Logs:- 
+		- call logs listing and view particular call detail, and get latest call logs using on-click refresh button.
+		
+Panel Employee
+---------------------
+1. Dashboard Overview Page.
+2. Change Password.
+3. Module:-
+	i. Events:-
+		- list, add, edit, delete and view events and also list view tickets under the event.
+	ii. Tickets:- 
+		- list(show all tickets), add, edit, delete and view tickets using relevant event.
+		- send text message to related customer.
+		- voice call related to customer.
+		- chat with related customer.
+		- video call under development.
+		
+Panel Customer
+---------------------
+1. Dashboard Overview Page.
+2. Change Password.
+3. Module:-
+	i. Tickets:-
+		- list(self created tickets), add, edit, delete and view self created tickets.
+		- send text message to support system.
+		- voice call to support system.
+		- chat with support system.
+		- video call under development.
+		

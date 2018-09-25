@@ -19,8 +19,10 @@
                         <th>@lang('quickadmin.calllog.fields.to')</th>
                         <th>@lang('quickadmin.calllog.fields.from')</th>
                         <th>@lang('quickadmin.calllog.fields.status')</th>
-                        <th>@lang('quickadmin.calllog.fields.direction')</th>
-                        <th>@lang('quickadmin.calllog.fields.created_at')</th>
+                        <th>@lang('quickadmin.calllog.fields.start_time')</th>
+                        <th>@lang('quickadmin.calllog.fields.end_time')</th>
+						<th>@lang('quickadmin.calllog.fields.duration')</th>
+						<th>@lang('quickadmin.calllog.fields.direction')</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -34,8 +36,10 @@
                                 <td>{{ $calllog['to'] or 'N/A'}}</td>
                                 <td>{{ $calllog['from'] or 'N/A'}}</td>
                                 <td>{{ $calllog['status'] or 'N/A'}}</td>
-                                <td>{{ $calllog['direction'] or 'N/A' }}</td>
-                                <td>{{ $calllog['dateCreated'] or 'N/A'}}</td>
+                                <td>{{ $calllog['startTime'] or 'N/A' }}</td>
+                                <td>{{ $calllog['endTime'] or 'N/A' }}</td>
+                                <td>{{ $calllog['duration'] or 'N/A'}}</td>
+                                <td>{{ $calllog['direction'] or 'N/A'}}</td>
                                 <td>
                                     @can('calllog_view')
                                     <a href="{{ route('calllogs.show',[$calllog->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
