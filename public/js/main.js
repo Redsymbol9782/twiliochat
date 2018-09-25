@@ -256,13 +256,13 @@ function smsModalBox(){
 }
 	smsModalBox();
 	
-function smsModalBox(){
-	var modal = $('.smsmodal, #smsmask');
-	$('.open-smsmodal').on('click', function() {
+function videoModalBox(){
+	var modal = $('.videomodal, #videomask');
+	$('.open-videomodal').on('click', function() {
 		modal.fadeIn(300);
 	});
-	$('.close-smsmodal, #smsmask').on('click', function() {
+	$('.close-videomodal, #videomask').on('click', function() {
 		modal.fadeOut(800);
 	});
 }
-	smsModalBox();
+	videoModalBox();

@@ -14,7 +14,7 @@
                     <form class="form-horizontal" method="POST" action="{{ URL::asset('sms') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('to') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('to') ? 'has-error' : '' }}">
                             <label for="to" class="col-md-4 control-label">To</label>
 
                             <div class="col-md-6">
@@ -55,3 +55,10 @@
         </div>
     </div>
 </div>
+@section('javascript') 
+    <script>
+		@if(Session::has('success'))
+			swal('Success','{{Session::get('success')}}','success');
+		@endif
+	</script>
+@endsection
