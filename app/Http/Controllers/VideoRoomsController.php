@@ -34,55 +34,54 @@ class VideoRoomsController extends Controller
 	}
 	
 	public function index()
-{
-   $rooms = [];
-   try {
-       $client = new Client($this->accountSid, $this->authToken);
-       $allRooms = $client->video->rooms->read([]);
+	{
+	   $rooms = [];
+	   try {
+		   $client = new Client($this->accountSid, $this->authToken);
+		   $allRooms = $client->video->rooms->read([]);
 
-        $rooms = array_map(function($room) {
-           return $room->uniqueName;
-        }, $allRooms);
+			$rooms = array_map(function($room) {
+			   return $room->uniqueName;
+			}, $allRooms);
 
-   } catch (Exception $e) {
-       echo "Error: " . $e->getMessage();
-   }
-   
-   return view('index', ['rooms' => $rooms]);
-}
+	   } catch (Exception $e) {
+		   echo "Error: " . $e->getMessage();
+	   }
+	   
+	   return view('index', ['rooms' => $rooms]);
+	}
 
-public function createRoom(Request $request)
-{
-    $client = new Client($this->accountSid, $this->authToken);
+	public function createRoom(Request $request)
+	{
+		$client = new Client($this->accountSid, $this->authToken);
 
-   $exists = $client->video->rooms->read([ 'uniqueName' => $request->get('roomName')]);
-   if (empty($exists)) {
-       $client->video->rooms->create([
-           'uniqueName' => $request->roomName,
-           'type' => 'group',
-           'recordParticipantsOnConnect' => false
-       ]);
+	   $exists = $client->video->rooms->read([ 'uniqueName' => $request->get('roomName')]);
+	   if (empty($exists)) {
+		   $client->video->rooms->create([
+			   'uniqueName' => $request->roomName,
+			   'type' => 'group',
+			   'recordParticipantsOnConnect' => false
+		   ]);
 
-       \Log::debug("created new room: ".$request->roomName);
-   }
+		   \Log::debug("created new room: ".$request->roomName);
+	   }
 
-   return redirect('join/{roomName}');
-}
+	   return redirect('/room/join/'.urlencode($request->get('roomName')));
+	}
 
-public function joinRoom($roomName)
-{
-   // A unique identifier for this user
-   $identity = Auth::user()->name;
+	public function joinRoom($roomName)
+	{
+		// A unique identifier for this user
+		$identity = Auth::user()->name;
+		$roomName = urldecode($roomName);
+		//Log::debug("joined with identity: $identity");
+		$token = new AccessToken($this->accountSid, $this->apikey, $this->apisecret, 3600, $identity);
+		$accessToken = $token->toJWT();
+		$videoGrant = new VideoGrant();
+		$videoGrant->setRoom($roomName);
 
-   //Log::debug("joined with identity: $identity");
-   $token = new AccessToken($this->accountSid, $this->apikey, $this->apisecret, 3600, $identity);
-
-   $videoGrant = new VideoGrant();
-   $videoGrant->setRoom($roomName);
-
-   $token->addGrant($videoGrant);
-
-   return view('room', [ 'accessToken' => $token->toJWT(), 'roomName' => $roomName ]);
-}
+		$token->addGrant($videoGrant);
+		return view('tickets/room',compact('accessToken','roomName'));
+	}
 	
 }
