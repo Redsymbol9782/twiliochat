@@ -1,3 +1,19 @@
+url :- http://demo.redsymbolhost.com/twilio_ivr/
+admin access:- 
+username: admin@admin.com
+password: password
+
+employee access:-
+username: employee@admin.com
+password: 123456
+
+customer access:- 
+username: customer@admin.com
+password: 123456
+
+
+
+
 i. update site bar menu.
 ii. make a new module name 'call log module'.
 iii. update authy user module due to changed after theme change. 
