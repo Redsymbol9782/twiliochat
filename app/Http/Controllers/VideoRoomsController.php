@@ -73,7 +73,6 @@ public function joinRoom($roomName)
 {
    // A unique identifier for this user
    $identity = Auth::user()->name;
-
    //Log::debug("joined with identity: $identity");
    $token = new AccessToken($this->accountSid, $this->apikey, $this->apisecret, 3600, $identity);
 
